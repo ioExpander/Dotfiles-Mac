@@ -1,7 +1,11 @@
 #Use this only for profiling ZSH
 #zmodload zsh/zprof
 
-source /opt/homebrew/share/antigen/antigen.zsh
+if  [ -f "/opt/homebrew/share/antigen/antigen.zsh" ]; then
+    source /opt/homebrew/share/antigen/antigen.zsh #M1
+else 
+    source /usr/local/share/antigen/antigen.zsh #Intel
+fi
 
 HIST_STAMPS="yyyy-mm-dd" # Format the output of history for oh-my-zsh
 
@@ -63,6 +67,7 @@ if [ -x "$(command -v brew)" ]; then
     alias brew_clean='brew cleanup --prune=1 -s'
 fi
 
+# Get the Java path setup when installing with homebrew
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
