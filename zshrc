@@ -71,6 +71,13 @@ fi
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
+# Go ENV & PATH Config
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+
 # Load private settings... if found
 if [ -f ~/.zshrc_privateSettings ]; then
     source ~/.zshrc_privateSettings
