@@ -33,6 +33,11 @@ antigen theme spaceship-prompt/spaceship-prompt
 # Tell antigen that you're done
 antigen apply
 
+#Activate Mcfly for zsh history
+eval "$(mcfly init zsh)"
+export MCFLY_RESULTS=15
+export MCFLY_INTERFACE_VIEW=BOTTOM
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
