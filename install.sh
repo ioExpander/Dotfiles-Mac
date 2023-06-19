@@ -1,17 +1,9 @@
 #!/bin/bash
 
 ###########################
-#Doc & Usage
-###########################
-: <<'USAGE'
-@TODO
-USAGE
-
-###########################
 #Configuration
 ###########################
 BASEDIR=$(dirname $0)
-BACKUPDIR="~/.dotfilesbak"
 GIT_USERNAME="ioExpander"
 GIT_EMAIL="ioExpander@users.noreply.github.com"
 
@@ -20,7 +12,7 @@ cd $BASEDIR
 BASEDIR=$(pwd)
 
 #Check Installed programs
-for PROG in wget zsh vim exa rg brew fzf; do
+for PROG in wget zsh vim rg brew fzf gdu tldr zoxide exa; do
     which $PROG >/dev/null || {
         echo "Please install $PROG"
         exit 1
@@ -46,5 +38,6 @@ git config --global user.email $GIT_EMAIL
 # Linking files
 ln -fs $BASEDIR/vimrc ~/.vimrc
 
-#Copy Zshrc file
+#Copy Zsh files
+ln -fs $BASEDIR/zsh_plugins.txt ~/.zsh_plugins.txt # list of antidote plugins
 ln -fs $BASEDIR/zshrc ~/.zshrc

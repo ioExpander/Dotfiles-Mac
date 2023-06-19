@@ -1,52 +1,26 @@
-#Use this only for profiling ZSH
-#zmodload zsh/zprof
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/aditye/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
-if  [ -f "/opt/homebrew/share/antigen/antigen.zsh" ]; then
-    source /opt/homebrew/share/antigen/antigen.zsh #M1
-else 
-    source /usr/local/share/antigen/antigen.zsh #Intel
-fi
+# Load compinit module required for some plugins.
+autoload -Uz compinit
+compinit
 
-HIST_STAMPS="yyyy-mm-dd" # Format the output of history for oh-my-zsh
+# Some config
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-antigen use oh-my-zsh
-antigen bundle colored-man-pages
-antigen bundle common-aliases
-antigen bundle docker
-antigen bundle git
-antigen bundle sudo # add sudo in front of last CMD with ESC ESC combo
-antigen bundle kubectl
-antigen bundle fasd # use j <FolderName> to jump or v FileName to edit
-antigen bundle fd   # find replacement auto-completion
-antigen bundle zsh_reload  # reloads zsh config by running 'src'
-if [ -x "$(command -v fzf)" ]; then
-    antigen bundle fzf # fuzzy auto complete (Ctrl - T for files) (Ctrl - R for history)
-    # (cd xyz**<TAB> for fuzzy completion
-fi
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions              # Additional completion files
-antigen bundle zsh-users/zsh-syntax-highlighting      #needs to be loaded before history-substring search
-antigen bundle zsh-users/zsh-history-substring-search # search a substring in history with arrow keys
 
-antigen theme spaceship-prompt/spaceship-prompt
+# source antidote
+source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
 
-# Tell antigen that you're done
-antigen apply
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
 
-#Activate Mcfly for zsh history
-eval "$(mcfly init zsh)"
-export MCFLY_RESULTS=15
-export MCFLY_INTERFACE_VIEW=BOTTOM
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
 
 # Set personal aliases
 alias tmux="tmux -2"
 alias gwdiff="git diff --word-diff=color -b -w --ignore-blank-lines --ignore-space-at-eol"
 alias gdiff="git diff --ignore-space-at-eol -b -w --ignore-blank-lines"
-unalias gdu #Conflict with gdu tool
 
 # ls alias if exa is found
 if [ -x "$(command -v exa)" ]; then
@@ -72,21 +46,11 @@ if [ -x "$(command -v brew)" ]; then
     alias brew_clean='brew cleanup --prune=1 -s'
 fi
 
-# Get the Java path setup when installing with homebrew
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-
-# Go ENV & PATH Config
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-
 # Load private settings... if found
 if [ -f ~/.zshrc_privateSettings ]; then
     source ~/.zshrc_privateSettings
 fi
 
-#Use for debugging startup time
-#zprof
+#to put at the end
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)" # starship prompt
