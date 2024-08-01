@@ -23,11 +23,11 @@ alias gwdiff="git diff --word-diff=color -b -w --ignore-blank-lines --ignore-spa
 alias gdiff="git diff --ignore-space-at-eol -b -w --ignore-blank-lines"
 
 # ls alias if exa is found
-if [ -x "$(command -v exa)" ]; then
-    alias ls='exa'
-    alias ll='exa -lh'
-    alias la='exa -lha'
-    alias l="exa"
+if [ -x "$(command -v eza)" ]; then
+    alias ls='eza'
+    alias ll='eza -lh'
+    alias la='eza -lha'
+    alias l="eza"
 fi
 
 # Grep aliases if rg is detected
