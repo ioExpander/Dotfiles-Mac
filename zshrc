@@ -36,8 +36,9 @@ if [ -x "$(command -v rg)" ]; then
 fi
 
 # gdu aliases if gdu is detected
-if [ -x "$(command -v gdu)" ]; then
-    alias ncdu='gdu'
+if [ -x "$(command -v gdu-go)" ]; then
+    alias ncdu='gdu-go'
+    alias gdu='gdu-go'
 fi
 
 # Brew aliases if rg is detected
