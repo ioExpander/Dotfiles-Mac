@@ -36,15 +36,16 @@ if [ -x "$(command -v rg)" ]; then
 fi
 
 # gdu aliases if gdu is detected
-if [ -x "$(command -v gdu-go)" ]; then
-    alias ncdu='gdu-go'
-    alias gdu='gdu-go'
+if [ -x "$(command -v dua)" ]; then
+    alias ncdu='dua i'
+    alias gdu='dua i'
 fi
 
 # Brew aliases if rg is detected
 if [ -x "$(command -v brew)" ]; then
     alias ibrew='arch -x86_64 /usr/local/Homebrew/bin/brew'
-    alias brew_clean='brew cleanup --prune=1 -s'
+    alias brew_clean='brew autoremove && brew cleanup --prune=all -s'
+    alias brew_leaves='brew leaves | xargs brew desc --eval-all'
 fi
 
 # Load private settings... if found
