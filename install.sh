@@ -12,7 +12,7 @@ cd $BASEDIR
 BASEDIR=$(pwd)
 
 #Check Installed programs
-for PROG in wget zsh vim rg brew fzf tldr zoxide eza dua bat; do
+for PROG in git wget zsh vim rg brew fzf tmux tldr zoxide eza dua bat; do
     which $PROG >/dev/null || {
         echo "Please install $PROG"
         exit 1

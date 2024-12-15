@@ -43,7 +43,7 @@ fi
 
 # Brew aliases if rg is detected
 if [ -x "$(command -v brew)" ]; then
-    alias ibrew='arch -x86_64 /usr/local/Homebrew/bin/brew'
+    alias ibrew='arch -x86_64 /usr/local/Homebrew/bin/brew' # Unused for a while
     alias brew_clean='brew autoremove && brew cleanup --prune=all -s'
     alias brew_leaves='brew leaves | xargs brew desc --eval-all'
 fi
